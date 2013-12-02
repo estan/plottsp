@@ -27,11 +27,12 @@ point pairs instead (useful if you want to plot arbitrary
 disconnected edges instead of a path).
 
 ### General Usage
-    Usage: plottsp [ -h | -p | -c | -l ]
-       -h     Show help message
-       -p     Expect edges as point pairs (default is point sequence)
-       -c     Draw the complete graph (careful!)
-       -l     Show edge length labels
+    Usage: plottsp [ -h | -p | -c | -l | -t <title> ]
+       -h          Show help message
+       -p          Expect edges as point pairs (default is point sequence)
+       -c          Draw the complete graph (careful!)
+       -l          Show edge length labels
+       -t <title>  Set window title to <title>
     Input is read from standard input
 
 ### Available Controls
