@@ -189,15 +189,19 @@ void View::drawForeground(QPainter *painter, const QRectF& rect) {
     painter->setPen(Qt::gray);
 
     // Draw solution length HUD text.
-    const QString solutionHud = QString("Solution length: %1").arg(m_solutionLength);
+    const QString solutionHud = QString("Total solution length: %1").arg(m_solutionLength);
     const QPointF solutionHudPos = rect.bottomLeft() +
         QPointF(10/transform().m11(), -15/transform().m22());
     painter->drawText(mapFromScene(solutionHudPos), solutionHud);
 
     if (!m_legs.isEmpty()) {
         // Draw leg length HUD text.
-        const int legLength = qRound(m_legs[m_currentLeg]->line().length());
-        const QString legHud = QString("Leg length: %1").arg(legLength);
+        QLineF leg = m_legs[m_currentLeg]->line();
+        const QString legHud = QString("Leg %1, (%4, %5) → (%6, %7), Length: %8")
+            .arg(m_currentLeg)
+            .arg(leg.x1(), 0, 'f', 2).arg(leg.y1(), 0, 'f', 2)
+            .arg(leg.x2(), 0, 'f', 2).arg(leg.y2(), 0, 'f', 2)
+            .arg(qRound(leg.length()));
         const QPointF legHudPos = rect.bottomLeft() +
             QPointF(10/transform().m11(), -30/transform().m22());
         painter->drawText(mapFromScene(legHudPos), legHud);
